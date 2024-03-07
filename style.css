@@ -6,7 +6,7 @@
 }
 
 .logo{
-    background-image: url("resource/logo.svg");
+    background-image: url("resources/logo.svg");
     height: 100px;
     background-size: contain;
     background-position: center;
@@ -15,12 +15,12 @@
 
 @font-face {
     font-family: "Quicksand";
-    src: url("font/Quicksand-Medium.ttf");
+    src: url("fonts/Quicksand-Medium.ttf");
 }
 
 @font-face {
     font-family: "Honey";
-    src: url("font/HoneyScript-Light.ttf");
+    src: url("fonts/HoneyScript-Light.ttf");
 }
 
 *{
@@ -35,7 +35,7 @@
 }
 
 .background{
-    background-image: url("resource/background.svg");
+    background-image: url("resources/background.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

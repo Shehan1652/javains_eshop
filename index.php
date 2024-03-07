@@ -84,11 +84,8 @@
                                 <label class="form-label">Gender</label>
                                 <select class="form-control" id="gender">
 
-                                    
-
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
-
                                     
                                 </select>
                             </div>
