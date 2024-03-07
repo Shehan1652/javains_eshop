@@ -84,9 +84,21 @@
                                 <label class="form-label">Gender</label>
                                 <select class="form-control" id="gender">
 
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                    
+                                    <?php
+
+                                    include "connection.php";
+
+                                    $rs = Database::search("SELECT * FROM `gender`");
+                                    $n = $rs->num_rows;
+
+                                    for ($x = 0; $x < $n; $x++) {
+                                        $d = $rs->fetch_assoc();
+                                    ?>
+                                        <option value="<?php echo $d["id"]; ?>"><?php echo $d["gender_name"]; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </select>
                             </div>
 
@@ -95,7 +107,7 @@
                             </div>
 
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-dark">Already have an account? Sign In</button>
+                                <button class="btn btn-dark" onclick="changeView();">Already have an account? Sign In</button>
                             </div>
 
                         </div>
@@ -132,7 +144,7 @@
                                 <button class="btn btn-primary">Sign In</button>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-danger">New to eShop? Join Now</button>
+                                <button class="btn btn-danger" onclick="changeView();">New to eShop? Join Now</button>
                             </div>
                         </div>
                     </div>
