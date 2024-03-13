@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
 
-    <link rel="icon" href="resource/logo.svg" />
+    <link rel="icon" href="resources/logo.svg" />
 
 </head>
 
@@ -141,7 +141,7 @@
                                 <a href="#" class="link-primary">Forgot Password?</a>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-primary" onclick="signin();">Sign In</button>
+                                <button class="btn btn-primary">Sign In</button>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
                                 <button class="btn btn-danger" onclick="changeView();">New to eShop? Join Now</button>

@@ -6,7 +6,8 @@ function changeView(){
     signInBox.classList.toggle("d-none");
 }
 
-function signup() {
+function signup(){
+
     var fname = document.getElementById("fname");
     var lname = document.getElementById("lname");
     var email = document.getElementById("email");
@@ -15,23 +16,32 @@ function signup() {
     var gender = document.getElementById("gender");
 
     var form = new FormData();
-    form.append("f", fname.value);
-    form.append("l", lname.value);
-    form.append("e", email.value);
-    form.append("p", password.value);
-    form.append("m", mobile.value);
-    form.append("g", gender.value);
+    form.append("f",fname.value);
+    form.append("l",lname.value);
+    form.append("e",email.value);
+    form.append("p",password.value);
+    form.append("m",mobile.value);
+    form.append("g",gender.value);
 
     var request = new XMLHttpRequest();
 
-    request.onreadystatechange = function() {
-        if (request.status == 200 && request.readyState == 4){
+    request.onreadystatechange = function (){
+        if(request.status == 200 && request.readyState == 4){
             var response = request.responseText;
-            alert(response);
+
+            if(response == "Success"){
+                document.getElementById("msg").innerHTML = "Registration Success !";
+                document.getElementById("msg").className = "alert alert-success";
+                document.getElementById("msgdiv").className = "d-block";
+            }else{
+                document.getElementById("msg").innerHTML = response;
+                document.getElementById("msgdiv").className = "d-block";
+            }
+            
         }
     }
 
-    request.open("POST","signUpProcess.php",true);
-    request.send(form);
-
+    request.open ("POST","signUpProcess.php",true);
+    request.send (form); 
+    
 }
