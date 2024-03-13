@@ -27,7 +27,7 @@ if (empty($fname)){
     echo ("Please enter your Mobile Number.");
 }else if(strlen($mobile) != 10){
     echo ("Mobile Number must contain 10 Characters.");
-}else if(!preg_match("/07[0,1,2,4,5,6,7,8]{1}[0-9]{7}/")){
+}else if(!preg_match("/07[0,1,2,4,5,6,7,8]{1}[0-9]{7}/",$mobile)){
     echo ("Invalid Mobile Number.");
 }else if(empty($password)){
     echo ("Please enter your Password.");
