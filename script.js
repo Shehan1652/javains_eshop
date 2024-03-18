@@ -62,9 +62,16 @@ function signin(){
     request.onreadystatechange = function (){
         if(request.status == 200 && request.readyState == 4){
             var response = request.responseText;
-
-            
-
+            if (response =="success"){
+                document.getElementById("msg2").innerHTML = "Login Success!";
+                document.getElementById("msg2").className = "alert alert-success";
+                document.getElementById("msgdiv2").className = "d-block";
+                
+                window.location = "home.php";
+            }else{
+                document.getElementById("msg2").innerHTML = response;
+                document.getElementById("msgdiv2").className = "d-block";
+            }
         }
     }
 
