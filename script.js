@@ -83,9 +83,7 @@ function signin(){
 var forgotPasswordmodal;
 function forgotPassword() {
 
-    //var modal = document.getElementById("fpmodal");
-    //forgotPasswordmodal = new bootstrap.Modal(modal);
-    //forgotPasswordmodal.show();
+
 
     var email = document.getElementById("email2").value;
 
@@ -93,12 +91,20 @@ function forgotPassword() {
     request.onreadystatechange = function (){
         if(request.status == 200 && request.readyState == 4){
             var response = request.responseText;
-            alert(response);
+            if (response =="success"){
+                alert("Email sent successfully. Check your Inbox");
+                var modal = document.getElementById("fpmodal");
+                forgotPasswordmodal = new bootstrap.Modal(modal);
+                forgotPasswordmodal.show();
+            }else{
+                document.getElementById("msg2").innerHTML = response;
+                document.getElementById("msgdiv2").className = "d-block";
+            }
         }
     }
 
 
-    request.open("GET","forgotPasswordProcess.php?e"+email,true);
+    request.open("GET","forgotPasswordProcess.php?e="+email,true);
     request.send();
 
 

@@ -25,18 +25,23 @@ if(isset($_GET["e"])){
         $mail->IsSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = '**************************************';
-        $mail->Password = '*************************';
+        $mail->Username = 'ssandaruwan2002@gmail.com';
+        $mail->Password = 'vuvexgtaghyywiim';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
-        $mail->setFrom('*************************', 'Reset Password');
-        $mail->addReplyTo('************************', 'Reset Password');
-        $mail->addAddress($e);
+        $mail->setFrom('ssandaruwan2002@gmail.com', 'eShop Community');
+        $mail->addReplyTo('ssandaruwan2002@gmail.com', 'eShop Community');
+        $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = '****************************';
-        $bodyContent = '**************************';
-        $bodyContent .= '******************';
-        $mail->Body    = $bodyContent;
+        $mail->Subject = 'eShop Forgot Password Verification Code';
+        $bodyContent = '<h1 style="color:green; font-family: Segoe UI;">Your Verification Code Is : ' . $code . ' </h1>';
+        $mail->Body  = $bodyContent;
+
+        if(!$mail->send()) {
+            echo ("Email Sent Failed.");
+        } else {
+            echo ("success");
+        }
         
     }else{
         echo ("Invalid Email Address.");
