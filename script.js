@@ -83,8 +83,6 @@ function signin(){
 var forgotPasswordmodal;
 function forgotPassword() {
 
-
-
     var email = document.getElementById("email2").value;
 
     var request = new XMLHttpRequest();
@@ -107,6 +105,66 @@ function forgotPassword() {
     request.open("GET","forgotPasswordProcess.php?e="+email,true);
     request.send();
 
+}
 
+function showPassword1(){
+
+    var textfield = document.getElementById("np");
+    var button = document.getElementById("npb");
+
+    if (textfield.type == "password"){
+        textfield.type = "text";
+        button.innerHTML = "Hide";
+    } else {
+        textfield.type = "password";
+        button.innerHTML = "Show";
+    }
+
+}
+
+function showPassword2(){
+
+    var textfield = document.getElementById("rnp");
+    var button = document.getElementById("rnpb");
+
+    if (textfield.type == "password"){
+        textfield.type = "text";
+        button.innerHTML = "Hide";
+    } else {
+        textfield.type = "password";
+        button.innerHTML = "Show";
+    }
+
+}
+
+function resetPassword(){
+
+    var email = document.getElementById("email2");
+    var newpassword = document.getElementById("np");
+    var retypepassword = document.getElementById("rnp");
+    var verificationcode = document.getElementById("vcode");
+
+    var form = new FormData();
+    form.append("e",email.value);
+    form.append("n",newpassword.value);
+    form.append("r",retypepassword.value);
+    form.append("v",verificationcode.value);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function (){
+        if(request.readyState==4 && request.status==200) {
+            var response = request.responseText;
+            if(response == "success"){
+                alert("Password reset successfully");
+                forgotPasswordmodal.hide();
+            }else{
+                alert(response);
+            }
+        }
+    }
+    
+    request.open("POST","resetPasswordProcess.php",true);
+    request.send(form); 
 
 }

@@ -34,7 +34,7 @@ if(isset($_GET["e"])){
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'eShop Forgot Password Verification Code';
-        $bodyContent = '<h1 style="color:green; font-family: Segoe UI;">Your Verification Code Is : ' . $code . ' </h1>';
+        $bodyContent = '<h1 style="color:green; font-family: Segoe UI;">Your Verification Code is : ' . $code . ' </h1>';
         $mail->Body  = $bodyContent;
 
         if(!$mail->send()) {
