@@ -97,6 +97,7 @@ function forgotPassword() {
             }else{
                 document.getElementById("msg2").innerHTML = response;
                 document.getElementById("msgdiv2").className = "d-block";
+                swal ("Error",response,"error"); //SWeet ALert
             }
         }
     }
