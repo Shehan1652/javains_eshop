@@ -145,31 +145,50 @@
 
                                             <?php
                                             
-                                            $product_rs = Database::search("SELECT * FROM `product` WHERE 
+                                            $product_rs = Database::search("SELECT * FROM `product` INNER JOIN `product_img` ON product.id=product_img.product_id WHERE 
                                             `condition_condition_id` = '".$condition_data2["cat_id"]."' AND `status_status_id`='1' 
-                                             ORDER BY `datetime_added` DESC LIMIT 4 OFFSET 0");
+                                             ORDER BY `datetime_added` DESC LIMIT 4 OFFSET 0"); //offset 4 kiyana eken add krna product walin 4i pennanne.
 
                                              $product_num = $product_rs->num_rows;
 
                                             for ($z=0; $z < $product_num; $z++) { 
+
+                                                $product_data = $product_rs->fetch_assoc();
+
                                             ?>
 
                                                 <div class="card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
 
-                                                    <img src="resources/product_img/ip12.jpg" class="card-img-top img-thumbnail mt-2" style="height: 180px;" />
+                                                    <img src="<?php echo $product_data["path"]; ?>" class="card-img-top img-thumbnail mt-2" style="height: 180px;" />
                                                     <div class="card-body ms-0 m-0 text-center">
-                                                        <h5 class="card-title fw-bold fs-6">Apple iPhone 12</h5>
+                                                        <h5 class="card-title fw-bold fs-6"><?php echo $product_data["title"]; ?></h5>
                                                         <span class="badge rounded-pill text-bg-info">New</span><br/>
-                                                        <span class="card-text text-primary">Rs. 100000 .00</span><br />
-                                                        
+                                                        <span class="card-text text-primary">Rs. <?php echo $product_data["price"]; ?></span><br />
+
+                                                        <?php
+                                                        if ($product_data["qty"] > 0) {
+                                                        ?>
                                                             <span class="card-text text-warning fw-bold">In Stock</span><br />
-                                                            <span class="card-text text-success fw-bold">10 Items Available</span><br /><br />
+                                                            <span class="card-text text-success fw-bold"><?php echo $product_data["qty"]; ?> Items Available</span><br /><br />
                                                             <a href='#' class="col-12 btn btn-success">Buy Now</a>
 
                                                             <button class="col-12 btn btn-dark mt-2">
                                                                 <i class="bi bi-cart-plus-fill text-white fs-5"></i>
                                                             </button>
+                                                        <?php
+                                                        }else{
+                                                        ?>
+                                                            <span class="card-text text-danger fw-bold">Out of Stock</span><br />
+                                                            <span class="card-text text-danger fw-bold"><?php echo $product_data["qty"]; ?>) Items Available</span><br /><br />
+                                                            <a href='#' class="col-12 btn btn-success disabled">Buy Now</a>
 
+                                                            <button class="col-12 btn btn-dark mt-2 disabled">
+                                                                <i class="bi bi-cart-plus-fill text-white fs-5"></i>
+                                                            </button>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                              
                                                             <button class="col-12 btn btn-outline-light mt-2 border border-primary">
                                                                 <i class="bi bi-heart-fill text-danger fs-5"></i>
                                                             </button>
