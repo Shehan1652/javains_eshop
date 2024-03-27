@@ -35,8 +35,21 @@
 
                             <select class="form-select" style="max-width: 250px;" id="basic_search_select">
                                 <option value="0">All Categories</option>
-                                <option value="1">Mobile phones</option>
-                                <option value="2">Laptops</option>
+
+                                <?php
+
+                                $category_rs = Database::search("SELECT * FROM `category`");
+                                $category_num = $category_rs->num_rows;
+
+                                for ($x = 0; $x < $category_num; $x++) {
+                                    $category_data = $category_rs->fetch_assoc();
+                                ?>
+                                    <option value="<?php echo  $category_data["cat_id"]; ?>">
+                                        <?php echo  $category_data["cat_name"]; ?>
+                                    </option>
+                                <?php 
+                                } 
+                                ?>
                             </select>
 
                         </div>
@@ -104,52 +117,82 @@
 
                     <!-- Carousel -->
 
-                        <!-- Category Name -->
+                        <?php
+                            $category_rs2 = Database::search("SELECT * FROM `category`");
+                            $category_num2 = $category_rs2->num_rows;
+                            
+                            for($y = 0; $y < $category_num2; $y++) {
+                                $category_rs2 = $category_rs2->fetch_assoc();
+                        ?>
 
-                        <div class="col-12 mt-3 mb-3">
-                            <a href="#" class="text-decoration-none text-dark fs-3 fw-bold">Mobile phones</a> &nbsp;&nbsp;
-                            <a href="#" class="text-decoration-none text-dark fs-6">See All &nbsp;&rarr;</a>
-                        </div>
+                                <!-- Category Name -->
 
-                        <!-- Category Name -->
-                        <!-- products -->
+                                <div class="col-12 mt-3 mb-3">
+                                    <a href="#" class="text-decoration-none text-dark fs-3 fw-bold">
+                                        <?php echo $category_data2["cat_name"]; ?>
+                                    </a> &nbsp;&nbsp;
+                                    <a href="#" class="text-decoration-none text-dark fs-6">See All &nbsp;&rarr;</a>
+                                </div>
 
-                        <div class="col-12 mb-3">
-                            <div class="row border border-primary">
+                                <!-- Category Name -->
+                                <!-- products -->
 
-                                <div class="col-12">
-                                    <div class="row justify-content-center gap-2">
+                                <div class="col-12 mb-3">
+                                    <div class="row border border-primary">
 
-                                            <div class="card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
+                                        <div class="col-12">
+                                            <div class="row justify-content-center gap-2">
 
-                                                <img src="resources/mobile_images/iphone12.jpg" class="card-img-top img-thumbnail mt-2" style="height: 180px;" />
-                                                <div class="card-body ms-0 m-0 text-center">
-                                                    <h5 class="card-title fw-bold fs-6">Apple iPhone 12</h5>
-                                                    <span class="badge rounded-pill text-bg-info">New</span><br/>
-                                                    <span class="card-text text-primary">Rs. 100000 .00</span><br />
-                                                    
-                                                        <span class="card-text text-warning fw-bold">In Stock</span><br />
-                                                        <span class="card-text text-success fw-bold">10 Items Available</span><br /><br />
-                                                        <a href='#' class="col-12 btn btn-success">Buy Now</a>
+                                            <?php
+                                            
+                                            $product_rs = Database::search("SELECT * FROM `product` WHERE 
+                                            `condition_condition_id` = '".$condition_data2["cat_id"]."' AND `status_status_id`='1' 
+                                             ORDER BY `datetime_added` DESC LIMIT 4 OFFSET 0");
 
-                                                        <button class="col-12 btn btn-dark mt-2">
-                                                            <i class="bi bi-cart-plus-fill text-white fs-5"></i>
-                                                        </button>
+                                             $product_num = $product_rs->num_rows;
 
-                                                        <button class="col-12 btn btn-outline-light mt-2 border border-primary">
-                                                            <i class="bi bi-heart-fill text-danger fs-5"></i>
-                                                        </button>
-                                                    
+                                            for ($z=0; $z < $product_num; $z++) { 
+                                            ?>
+
+                                                <div class="card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
+
+                                                    <img src="resources/product_img/ip12.jpg" class="card-img-top img-thumbnail mt-2" style="height: 180px;" />
+                                                    <div class="card-body ms-0 m-0 text-center">
+                                                        <h5 class="card-title fw-bold fs-6">Apple iPhone 12</h5>
+                                                        <span class="badge rounded-pill text-bg-info">New</span><br/>
+                                                        <span class="card-text text-primary">Rs. 100000 .00</span><br />
+                                                        
+                                                            <span class="card-text text-warning fw-bold">In Stock</span><br />
+                                                            <span class="card-text text-success fw-bold">10 Items Available</span><br /><br />
+                                                            <a href='#' class="col-12 btn btn-success">Buy Now</a>
+
+                                                            <button class="col-12 btn btn-dark mt-2">
+                                                                <i class="bi bi-cart-plus-fill text-white fs-5"></i>
+                                                            </button>
+
+                                                            <button class="col-12 btn btn-outline-light mt-2 border border-primary">
+                                                                <i class="bi bi-heart-fill text-danger fs-5"></i>
+                                                            </button>
+                                                        
+                                                    </div>
                                                 </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                                    
                                             </div>
+                                        </div>
 
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                                <!-- products -->
 
-                        <!-- products -->
+                            <?php
+                            }
+                            ?>
+                        
 
                 </div>
             </div>

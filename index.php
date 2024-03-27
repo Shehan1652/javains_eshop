@@ -25,6 +25,14 @@
 
             <div class="col-12">
                 <div class="row">
+
+                <?php
+                
+                include "header.php";
+                include "connection.php";
+                
+                ?>
+
                     <div class="col-12 logo"></div>
                     <div class="col-12">
                         <p class="text-center title01">Hi, Welcome to eShop</p>
